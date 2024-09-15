@@ -29,12 +29,24 @@ header {
 
 main {
   --bgClr: #6663;
-  background-color: var(--bgClr);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   flex: auto;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bgClr);
+  & button {
+    -webkit-tap-highlight-color: transparent;
+    padding: 0.2rem 0.6rem;
+    text-transform: capitalize;
+    border: 0.04rem solid #3339;
+    border-radius: 0.2rem;
+
+    &:active {
+      scale: 0.95;
+    }
+  }
 }
 
 footer {
