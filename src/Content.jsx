@@ -20,16 +20,16 @@ const Content = () => {
     },
   ])
 
-  const check = (id) => {
-    const listItems = items.map((item) =>
+  const check = id => {
+    const listItems = items.map(item =>
       item.id === id ? { ...item, checked: !item.checked } : item
     )
     setItems(listItems)
     localStorage.setItem('ITEMS1', JSON.stringify(listItems))
   }
 
-  const del = (id) => {
-    const listItems = items.filter((item) => item.id !== id)
+  const del = id => {
+    const listItems = items.filter(item => item.id !== id)
     setItems(listItems)
     localStorage.setItem('ITEMS1', JSON.stringify(listItems))
   }
@@ -39,7 +39,7 @@ const Content = () => {
       <main>
         {items.length ? (
           <ul>
-            {items.map((i) => (
+            {items.map(i => (
               <li
                 className='item'
                 key={i.id}>
