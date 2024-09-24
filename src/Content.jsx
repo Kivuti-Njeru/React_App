@@ -36,7 +36,7 @@ const Content = () => {
 
   return (
     <>
-      <main>
+      <article className='todoList'>
         {items.length ? (
           <ul>
             {items.map(i => (
@@ -74,7 +74,7 @@ const Content = () => {
             Your list is empty
           </p>
         )}
-      </main>
+      </article>
     </>
   )
 }

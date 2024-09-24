@@ -6,11 +6,11 @@ import './index.css'
 function App() {
   return (
     <>
-      <div className='app'>
+      <section className='app'>
         <Header />
         <Content />
         <Footer />
-      </div>
+      </section>
     </>
   )
 }
