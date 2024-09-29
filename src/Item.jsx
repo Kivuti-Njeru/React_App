@@ -3,9 +3,7 @@ import { FaTrashAlt } from 'react-icons/fa'
 
 function Item({ i, check, del }) {
   return (
-    <li
-      className='item'
-      key={i.id}>
+    <li className='item'>
       <input
         id='item'
         type='checkbox'

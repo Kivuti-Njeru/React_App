@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Footer = ({ length }) => {
   return (
@@ -7,7 +7,7 @@ const Footer = ({ length }) => {
         {length} List {length === 1 ? 'Item' : 'Items'}
       </p>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

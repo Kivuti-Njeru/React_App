@@ -1,5 +1,5 @@
-import React from 'react'
-import Item from './Item'
+import React from 'react';
+import Item from './Item';
 function ItemList({ items, check, del }) {
   return (
     <ul>
@@ -12,7 +12,7 @@ function ItemList({ items, check, del }) {
         />
       ))}
     </ul>
-  )
+  );
 }
 
-export default ItemList
+export default ItemList;
