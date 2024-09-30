@@ -2,14 +2,16 @@ import AddItem from './AddItem';
 import Content from './Content';
 import Footer from './Footer';
 import Header from './Header';
+import Search from './Search';
 import './index.css';
 import { useState } from 'react';
 
 function App() {
-  const [listItem, setListItem] = useState('');
   const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem('ITEMS1'))
+    JSON.parse(localStorage.getItem('ITEMS1')),
   );
+  const [listItem, setListItem] = useState('');
+  const [search, setSearch] = useState('');
 
   const setAndSave = data => {
     setItems(data);
@@ -26,14 +28,13 @@ function App() {
   const submit = e => {
     e.preventDefault();
     if (!listItem) return;
-
     addItem(listItem);
     setListItem('');
   };
 
   const check = id => {
     const listItems = items.map(item =>
-      item.id === id ? { ...item, checked: !item.checked } : item
+      item.id === id ? { ...item, checked: !item.checked } : item,
     );
     setAndSave(listItems);
   };
@@ -46,13 +47,19 @@ function App() {
     <>
       <section className='app'>
         <Header title='React App' />
+        <Search
+          search={search}
+          setSearch={setSearch}
+        />
         <AddItem
           listItem={listItem}
           setListItem={setListItem}
           submit={submit}
         />
         <Content
-          items={items}
+          items={items.filter(item =>
+            item.item.toLowerCase().includes(search.toLowerCase()),
+          )}
           check={check}
           del={del}
         />

@@ -90,6 +90,7 @@ header {
 
 .addItem > label {
   font-size: 1.8rem;
+  transform: translateX(-2.6rem);
 }
 
 .addItem > [type='text'] {
@@ -104,6 +105,20 @@ header {
   &:active {
     scale: 0.95rem;
   }
+}
+
+.searchForm {
+  display: grid;
+  place-items: center;
+  gap: 0.05rem;
+}
+
+.searchForm > label {
+  font-size: 1.6rem;
+  transform: translateX(-3.7rem);
+}
+.searchForm > input {
+  padding: 0.4rem;
 }
 
 footer {
