@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function Search({ Search, setSearch }) {
   return (
@@ -15,7 +15,7 @@ function Search({ Search, setSearch }) {
         placeholder='Search Items'
       />
     </form>
-  );
+  )
 }
 
-export default Search;
+export default Search

@@ -1,18 +1,18 @@
-import React from 'react';
-import Item from './Item';
+import React from 'react'
+import Item from './Item'
 function ItemList({ items, check, del }) {
   return (
     <ul>
-      {items.map(i => (
+      {items.map(item => (
         <Item
-          key={i.id}
-          i={i}
+          key={item.id}
+          i={item}
           check={check}
           del={del}
         />
       ))}
     </ul>
-  );
+  )
 }
 
-export default ItemList;
+export default ItemList

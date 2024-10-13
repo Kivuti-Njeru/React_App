@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const React_101 = () => {
-  const [name, setName] = useState('World');
+  const [name, setName] = useState('World')
   const changeName = () => {
-    const names = ['Alexander', 'Kefini', 'Jacob'];
-    const num = Math.floor(Math.random() * names.length);
-    setName(names[num]);
-  };
+    const names = ['Alexander', 'Kefini', 'Jacob']
+    const num = Math.floor(Math.random() * names.length)
+    setName(names[num])
+  }
   return (
     <>
       <article className='react_101'>
@@ -14,7 +14,7 @@ const React_101 = () => {
         <button onClick={changeName}>click Me</button>
       </article>
     </>
-  );
-};
+  )
+}
 
-export default React_101;
+export default React_101
