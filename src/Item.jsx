@@ -1,29 +1,29 @@
 import React from 'react'
 import { FaTrashAlt } from 'react-icons/fa'
 
-function Item({ item, check, del }) {
+function Item({ i, check, del }) {
   return (
     <li className='item'>
       <input
         id='item'
         type='checkbox'
-        onChange={() => check(item.id)}
-        checked={item.checked}
+        onChange={() => check(i.id)}
+        checked={i.checked}
       />
       <label
         style={
-          item.checked
+          i.checked
             ? {
                 textDecoration: 'line-through',
                 opacity: 0.3,
               }
             : null
         }
-        onDoubleClick={() => check(item.id)}>
-        {item.item}
+        onDoubleClick={() => check(i.id)}>
+        {i.item}
       </label>
       <FaTrashAlt
-        onClick={() => del(item.id)}
+        onClick={() => del(i.id)}
         role='button'
         tabIndex={0}
       />

@@ -4,12 +4,16 @@ import Footer from './Footer'
 import Header from './Header'
 import Search from './Search'
 import './index.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('ITEMS1')))
   const [listItem, setListItem] = useState('')
   const [search, setSearch] = useState('')
+
+  // useEffect(() => {
+  //   console.log('useEffect()')
+  // })
 
   const setAndSave = data => {
     setItems(data)
