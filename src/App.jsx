@@ -7,24 +7,21 @@ import './index.css'
 import { useEffect, useState } from 'react'
 
 function App() {
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem('ITEMS1')))
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem('ITEMS1')) || [],
+  )
   const [listItem, setListItem] = useState('')
   const [search, setSearch] = useState('')
 
-  // useEffect(() => {
-  //   console.log('useEffect()')
-  // })
-
-  const setAndSave = data => {
-    setItems(data)
-    localStorage.setItem('ITEMS1', JSON.stringify(data))
-  }
+  useEffect(() => {
+    localStorage.setItem('ITEMS1', JSON.stringify(items))
+  }, [items])
 
   const addItem = item => {
     const id = crypto.randomUUID()
     const newItem = { id, checked: false, item }
     const listItems = [...items, newItem]
-    setAndSave(listItems)
+    setItems(listItems)
   }
 
   const submit = e => {
@@ -38,12 +35,12 @@ function App() {
     const listItems = items.map(item =>
       item.id === id ? { ...item, checked: !item.checked } : item,
     )
-    setAndSave(listItems)
+    setItems(listItems)
   }
 
   const del = id => {
     const listItems = items.filter(item => item.id !== id)
-    setAndSave(listItems)
+    setItems(listItems)
   }
   return (
     <>
