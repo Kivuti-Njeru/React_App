@@ -6,6 +6,8 @@ import Search from './Search'
 import './index.css'
 import { useEffect, useState } from 'react'
 
+import apiRequest from './apiRequest'
+
 function App() {
   const API_URL = 'http://localhost:3500/items'
 
@@ -37,11 +39,20 @@ function App() {
     }, 2000)
   }, [])
 
-  const addItem = item => {
+  const addItem = async item => {
     const id = crypto.randomUUID()
     const newItem = { id, checked: false, item }
     const listItems = [...items, newItem]
     setItems(listItems)
+    const postOptions = {
+      method: 'POST',
+      headers: {
+        'content-Type': 'application/json',
+      },
+      body: JSON.stringify(newItem),
+    }
+    const res = await apiRequest(API_URL, postOptions)
+    if (res) setFetchErr(res)
   }
 
   const submit = e => {
@@ -51,16 +62,33 @@ function App() {
     setListItem('')
   }
 
-  const check = id => {
+  const check = async id => {
     const listItems = items.map(item =>
       item.id === id ? { ...item, checked: !item.checked } : item,
     )
     setItems(listItems)
+
+    const checkItem = listItems.filter(item => item.id === id)
+    const updateOptions = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ checked: checkItem[0].checked }),
+    }
+    const reqUrl = `${API_URL}/${id}`
+    const res = await apiRequest(reqUrl, updateOptions)
+    if (res) setFetchErr(res)
   }
 
-  const del = id => {
+  const del = async id => {
     const listItems = items.filter(item => item.id !== id)
     setItems(listItems)
+
+    const deleteOptions = { method: 'DELETE' }
+    const reqUrl = `${API_URL}/${id}`
+    const res = await apiRequest(reqUrl, deleteOptions)
+    if (res) setFetchErr(res)
   }
   return (
     <>
