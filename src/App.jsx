@@ -7,15 +7,35 @@ import './index.css'
 import { useEffect, useState } from 'react'
 
 function App() {
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem('ITEMS1')) || [],
-  )
+  const API_URL = 'http://localhost:3500/items'
+
+  const [items, setItems] = useState([])
   const [listItem, setListItem] = useState('')
   const [search, setSearch] = useState('')
+  const [fetchErr, setFetchErr] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    localStorage.setItem('ITEMS1', JSON.stringify(items))
-  }, [items])
+    const fetchItems = async () => {
+      try {
+        const res = await fetch(API_URL)
+
+        if (!res.ok) throw Error('Did not receive expected data')
+
+        const listItems = await res.json()
+        setItems(listItems)
+        setFetchErr(null)
+      } catch (error) {
+        setFetchErr(error.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    setTimeout(() => {
+      ;(async () => await fetchItems())()
+    }, 2000)
+  }, [])
 
   const addItem = item => {
     const id = crypto.randomUUID()
@@ -55,13 +75,21 @@ function App() {
           setListItem={setListItem}
           submit={submit}
         />
-        <Content
-          items={items.filter(item =>
-            item.item.toLowerCase().includes(search.toLowerCase()),
+        <div style={{ flex: 1 }}>
+          {isLoading && <p style={{ color: '#666' }}>Loading items...</p>}
+          {fetchErr && (
+            <p style={{ color: '#cc0000' }}>{`Error: ${fetchErr}`}</p>
           )}
-          check={check}
-          del={del}
-        />
+          {!fetchErr && !isLoading && (
+            <Content
+              items={items.filter(item =>
+                item.item.toLowerCase().includes(search.toLowerCase()),
+              )}
+              check={check}
+              del={del}
+            />
+          )}
+        </div>
         <Footer length={items.length} />
       </section>
     </>
