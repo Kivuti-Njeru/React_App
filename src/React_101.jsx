@@ -10,7 +10,7 @@ const React_101 = () => {
   return (
     <>
       <article className='react_101'>
-        <p>Hi {name}</p>
+        <p>Hello {name}</p>
         <button onClick={changeName}>click Me</button>
       </article>
     </>
