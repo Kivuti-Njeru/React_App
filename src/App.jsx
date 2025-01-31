@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import apiRequest from './apiRequest'
 
 function App() {
-  const API_URL = 'http://localhost:3500/items'
+  const API_URL = 'http://localhost:3000/items'
 
   const [items, setItems] = useState([])
   const [listItem, setListItem] = useState('')
